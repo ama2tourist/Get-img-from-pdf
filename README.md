@@ -23,7 +23,7 @@ Follow these steps to install and use the script:
 
 To use the script, you have two options:
 
-### Option 1: Use Default Settings
+### Option 1: Use Prompt (Default Settings)
 
 Simply run the script without any options to use the default settings:
 
