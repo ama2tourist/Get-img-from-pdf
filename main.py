@@ -2,6 +2,7 @@ import typer
 import os
 import glob
 from typing_extensions import Annotated
+from rich import print
 
 from get_downloads_folder import get_download_folder
 from save_images import save_images
@@ -20,6 +21,10 @@ def is_it_file(target: str) -> bool:
 
 def get_all_pdf_files(target: str) -> list[str]:
     return glob.glob(f"{target}*.pdf")
+
+
+def is_path_exists(target: str) -> bool:
+    return os.path.exists(target)
 
 
 def main(
@@ -42,8 +47,15 @@ def main(
         ),
     ],
 ):
+    if not is_path_exists(target=target):
+        print("[bold red]ValueError:[/bold red] Target path doesn't exists")
+        return
+
     if not destination:
         destination = get_download_folder()
+    elif not is_path_exists(destination):
+        print("[bold red]ValueError:[/bold red] Destination doesn't exists")
+        return
 
     if is_it_file(target=target) and is_it_pdf(target=target):
         save_images(target=target, destination=destination)
@@ -51,7 +63,7 @@ def main(
     for file in get_all_pdf_files(target=target):
         save_images(file, destination=destination)
 
-    print("Successfully extracted images")
+    print("[green]Successfully extracted images[/green]")
 
 
 if __name__ == "__main__":
