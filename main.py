@@ -34,7 +34,7 @@ def main(
             "--target",
             "-t",
             prompt="Pass file or folder",
-            help="Target file or",
+            help="Target pdf file or directory with pdf files",
         ),
     ],
     destination: Annotated[
@@ -45,7 +45,7 @@ def main(
             prompt="Where to store images(default Downloads folder)",
             help="Option where to store images",
         ),
-    ],
+    ] = "",
 ):
     if not is_path_exists(target=target):
         print("[bold red]ValueError:[/bold red] Target path doesn't exists")
