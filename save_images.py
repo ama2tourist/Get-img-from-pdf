@@ -1,11 +1,8 @@
 import fitz
 import os
-from PIL import Image
-import glob
 
 
 def save_images(target: str, destination: str):
-    print(target)
     # Open PDF file
     pdf_file = fitz.open(target)
     base_name = os.path.basename(target)
@@ -13,7 +10,6 @@ def save_images(target: str, destination: str):
 
     # Calculate number of pages in PDF file
     page_nums = len(pdf_file)
-    print(page_nums)
 
     # Create empty list to store images information
     images_list = []
@@ -25,7 +21,8 @@ def save_images(target: str, destination: str):
 
     # Raise error if PDF has no images
     if len(images_list) == 0:
-        print("No files in:", target)
+        print("No images in:", base_name)
+    print("Extracting images from:", base_name)
 
     # Save all the extracted images
     for i, image in enumerate(images_list, start=1):
