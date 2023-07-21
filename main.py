@@ -1,5 +1,6 @@
 import typer
 from get_downloads_folder import get_download_folder
+from save_images import save_images
 from typing_extensions import Annotated
 
 
