@@ -24,16 +24,23 @@ def get_all_pdf_files(target: str) -> list[str]:
 
 def main(
     target: Annotated[
-        str, "Pass here file or folder from which image would be extracted"
+        str,
+        typer.Option(
+            "--target",
+            "-t",
+            prompt="Pass file or folder",
+            help="Target file or",
+        ),
     ],
     destination: Annotated[
         str,
-        (
-            "Pass here where image would be store\n",
-            "Default location is Downloads folder",
+        typer.Option(
+            "--dest",
+            "-d",
+            prompt="Where to store images(default Downloads folder)",
+            help="Option where to store images",
         ),
-    ] = "",
-    renmove_after_saving: bool = False,
+    ],
 ):
     if not destination:
         destination = get_download_folder()
